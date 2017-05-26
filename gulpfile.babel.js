@@ -10,6 +10,7 @@ import watchify from 'watchify';
 import babelify from 'babelify';
 import del from 'del';
 import importCss from 'gulp-import-css';
+import embedTemplates from 'gulp-angular-embed-templates';
 
 gulp.task('copy', () => {
   return gulp.src(['src/index.html'])
@@ -23,7 +24,7 @@ gulp.task('build', ['copy'], () => {
 });
 
 gulp.task('watch',() => {
-  const b = browserify('src/index.js', assign({ debug: true }, watchify.args))
+  const b = browserify('src/index.js', assign({ debug: true }, watchify.args))   
     .transform(babelify);
   const w = watchify(b)
     .on('update', () => bundle(w))

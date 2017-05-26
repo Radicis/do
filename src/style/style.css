@@ -1,16 +1,19 @@
 @import url('../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css');
 
+body{
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
 .mat-card{
     margin-bottom:10px;
 }
 
 .full-width {
   width: 100%;
-  margin-right:-100px;
 }
 
-.add-button{
-    float:right;
+md-sidenav-container > .md-sidenav-backdrop.md-sidenav-shown {
+    background-color: rgba(0, 0, 0, .6)
 }
 
 .is-done{
@@ -24,4 +27,36 @@
 .add-tab{
     background: #ccc;
     min-width: 40px;
+}
+
+.app-content{
+    padding:30px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-credits{
+    padding:30px;
+    text-align: center;
+}
+
+.md-headline{
+    font-weight:400;
+    font-size:24px;
+}
+
+.md-title{
+    font-weight:500;
+    font-size:20px;
+}
+
+.md-subhead{
+    font-weight:400;
+    font-size:16px;
+}
+
+md-sidenav {
+  width: 300px;
 }
