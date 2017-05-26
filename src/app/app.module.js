@@ -4,12 +4,13 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {TruncatePipe} from './pipes/truncate.pipe';
 
 import { AppComponent } from './app.component';
 import { ItemListComponent } from './itemlist/itemlist.component';
 
 @NgModule({
-    declarations: [ AppComponent, ItemListComponent ],
+    declarations: [ AppComponent, ItemListComponent, TruncatePipe ],
     imports: [ BrowserModule, BrowserAnimationsModule,MaterialModule, FormsModule],
     providers: [],
     bootstrap: [AppComponent]

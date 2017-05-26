@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
         <md-card class="text-center" *ngIf="items.length==0">Nothing Yet!</md-card>
         <md-card *ngFor="let item of items" disabled="true">
             <md-card-content>
-                <h3 [ngClass]="{'is-done': item.done}"> {{item.name}}</h3>
+                <h3 [ngClass]="{'is-done': item.done}"> {{item.name | truncate: 60}}</h3>
                 <md-card-actions>
                     <button md-button *ngIf="!item.done" (click)="done(item)" mdTooltip="Mark as Done">
                         <md-icon>done</md-icon>
