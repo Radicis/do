@@ -8,10 +8,10 @@ import { Component, Input } from '@angular/core';
             <md-card-content>
                 <h3 [ngClass]="{'is-done': item.done}"> {{item.name}}</h3>
                 <md-card-actions>
-                    <button md-button *ngIf="!item.done" (click)="done(item)">
+                    <button md-button *ngIf="!item.done" (click)="done(item)" mdTooltip="Mark as Done">
                         <md-icon>done</md-icon>
                     </button>
-                    <button md-button (click)="delete(item)"><md-icon>clear</md-icon></button>
+                    <button md-button (click)="delete(item)" mdTooltip="Delete me"><md-icon>clear</md-icon></button>
                 </md-card-actions>
             </md-card-content>
         </md-card>`

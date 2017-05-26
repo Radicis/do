@@ -1,1 +1,1 @@
-export const ITEMS = [{name:"Pick up some foo from the bar", done:true}, {name:"Drop off baz after the foo", done:false}];
+export const ITEMS = [[{name:"Pick up some foo from the bar", done:true}, {name:"Drop off baz after the foo", done:false}], [{name:"Pick up some foo from the bar", done:false}, {name:"Drop off baz after the foo", done:false}]];
