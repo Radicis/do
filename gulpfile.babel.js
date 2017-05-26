@@ -8,8 +8,8 @@ import assign from 'object-assign';
 import browserify from 'browserify';
 import watchify from 'watchify';
 import babelify from 'babelify';
-
 import del from 'del';
+import importCss from 'gulp-import-css';
 
 gulp.task('copy', () => {
   return gulp.src(['src/index.html'])
@@ -22,20 +22,27 @@ gulp.task('build', ['copy'], () => {
   return bundle(b);
 });
 
-gulp.task('watch', () => {
+gulp.task('watch',() => {
   const b = browserify('src/index.js', assign({ debug: true }, watchify.args))
     .transform(babelify);
   const w = watchify(b)
     .on('update', () => bundle(w))
-    .on('log', gutil.log);
+    .on('log', gutil.log);  
   return bundle(w)
 });
+
+gulp.task('copy:css', () => {
+  gulp.src('src/style/style.css')
+    .pipe(importCss())
+    .pipe(gulp.dest('public/style'));
+});
+
 
 gulp.task('clean', () => {
   return del('public');
 });
 
-gulp.task('default', ['copy', 'watch']);
+gulp.task('default', ['copy', 'copy:css', 'watch']);
 
 function bundle(b) {
   return b.bundle()
