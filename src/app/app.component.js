@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from './itemlist/list.service';
+import { ItemService } from './itemlist/item.service';
 import { MdDialog } from '@angular/material';
 
 @Component({
@@ -38,17 +39,18 @@ import { MdDialog } from '@angular/material';
             </md-tab>
          
             </md-tab-group>
+            <button md-raised-button color="primary" (click)="addItemToList()">Add Random Item</button>
     </div>
 </md-sidenav-container>
 
 `,
-    providers: [ListService]
+    providers: [ListService, ItemService]
 })
 
 export class AppComponent {
-    constructor(listService: ListService) {
+    constructor(listService: ListService) {        
         this.todoInput = null;
-        this._listService = listService;
+        this.listService = listService;
         this.activeList = 0;
     }
 
@@ -78,12 +80,23 @@ export class AppComponent {
         this.activeList = e.index;
     }
 
-    getLists() {
-        this.lists = this._listService.getItems();
+    getLists() {       
+        let lists = []  
+        let list = this.listService.createList("My First List");
+        lists.push(list);
+        let list2 = this.listService.createList("Second To Do List");
+        lists.push(list2);
+        return lists;
+    }
+
+    addItemToList(){
+        this.listService.getItem().then(item => {
+            this.lists[this.activeList].items.push(item);
+        })
     }
 
     ngOnInit() {
-        this.getLists();
+        this.lists = this.getLists();
     }
 
 }

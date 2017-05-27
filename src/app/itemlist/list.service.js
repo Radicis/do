@@ -1,18 +1,31 @@
 import { Injectable } from '@angular/core';
 import { ITEMS } from './mock-items';
+import { ItemService } from './item.service';
 
 @Injectable()
 export class ListService {
-    getItems() {
 
-        let lists = [];
+    constructor(itemService: ItemService) {
+        this.itemService = itemService;
+    }
 
-        let list = {name:"My First List", items:ITEMS[0]};
-        lists.push(list);
+    createList(title) {
+        let list = { name: title, items: [] };
+        let rand = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
 
-        let list2 = {name:"My Second List", items:ITEMS[1]};
-        lists.push(list2);
+        for(var i=0;i<rand;i++){
+            this.itemService.getItem().then(item => {
+                list.items.push(item);
+            });
+        }
 
-        return lists;
+        return list;
+    }
+
+    getItem() {
+        return this.itemService.getItem().then(item => {
+            console.log(item);
+            return item;
+        })
     }
 }
